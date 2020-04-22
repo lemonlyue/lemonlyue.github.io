@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lemonlyue.github.io/"/>
-  <updated>2020-04-22T10:19:55.810Z</updated>
+  <updated>2020-04-22T11:05:15.412Z</updated>
   <id>https://lemonlyue.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>php7源码安装</title>
+    <link href="https://lemonlyue.github.io/2020/04/22/php7%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/"/>
+    <id>https://lemonlyue.github.io/2020/04/22/php7%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/</id>
+    <published>2020-04-22T11:03:20.105Z</published>
+    <updated>2020-04-22T11:05:15.412Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>下载压缩包</li></ol><p><code>wget  https://www.php.net/distributions/php-7.3.8.tar.bz2</code></p><ol start="2"><li>解压</li></ol><p><code>tar -xjvf php-7.3.8.tar.bz2</code></p><ol start="3"><li>编译</li></ol><blockquote><p>./configure –perfix=/home/study/soft/php</p><p>编译时报了一个错误：</p><p>configure: error: libxml2 not found. Please check your libxml2 installation.</p><p>原本以为是缺少libxml2的安装，后来查阅了百度，是缺少了libxml2-dev</p><p>安装命令：</p><p><code>yum install libxml2-devel</code></p></blockquote><ol start="4"><li>make(构建)</li></ol><p><code>make</code>    <code>make test</code>  <code>make install</code></p><ol start="5"><li>查看一下php的扩展</li></ol><p><code>./bin/php -m</code></p><ol start="6"><li>测试一下</li></ol><p><code>vi test.php</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo time();&#x2F;&#x2F;输出当前的时间</span><br></pre></td></tr></table></figure><ul><li>结果如下：</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_2_centos php]# .&#x2F;bin&#x2F;php test.php </span><br><span class="line">1566919402[root@VM_0_2_centos php]# .&#x2F;bin&#x2F;php test.php</span><br></pre></td></tr></table></figure><ol start="7"><li>简化php命令</li></ol><ul><li>编辑目录下的.bash_profile文件</li></ul><p><code>vi ~/.bash_profile</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># .bash_profile</span><br><span class="line"></span><br><span class="line"># Get the aliases and functions</span><br><span class="line">if [ -f ~&#x2F;.bashrc ]; then</span><br><span class="line">        . ~&#x2F;.bashrc</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># User specific environment and startup programs</span><br><span class="line"></span><br><span class="line">PATH&#x3D;$PATH:$HOME&#x2F;bin</span><br><span class="line"></span><br><span class="line">export PATH</span><br><span class="line">alias php&#x3D;&#x2F;home&#x2F;study&#x2F;soft&#x2F;php&#x2F;bin&#x2F;php</span><br></pre></td></tr></table></figure><p>再执行<code>source ~/.bash_profile</code>，简化php命令完成。</p><ol start="8"><li>php7源码安装遇到的坑</li></ol><ul><li>gcc autoconfig没有安装,或者是其他软件没有安装</li><li>上面提到的libxml2-dev的安装</li><li>编译后没有php.ini文件</li></ul><blockquote><p>返回解压后的php安装包，将php.ini-development复制到安装目录下</p><p><code>cp php.ini-development /home/study/soft/php/etc/</code></p><p>回到安装目录下修改文件名称</p><p><code>mv php.ini-development php.ini</code></p><p>当前环境的话修改<code>php.ini</code>配置不会生效，因为有效的php.ini在安装目录下的<code>/lib</code>下</p><p>使用<code>php -i | grep php.ini</code>查看</p><p>将php.ini移动到lib下面</p><p><code>mv ./etc/php.ini ./lib</code></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;下载压缩包&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;wget  https://www.php.net/distributions/php-7.3.8.tar.bz2&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;解压&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
+    
+      <category term="Linux" scheme="https://lemonlyue.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
