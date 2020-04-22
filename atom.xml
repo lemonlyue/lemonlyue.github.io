@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lemonlyue.github.io/"/>
-  <updated>2020-04-22T14:58:18.240Z</updated>
+  <updated>2020-04-22T15:10:15.362Z</updated>
   <id>https://lemonlyue.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Swoole</title>
+    <link href="https://lemonlyue.github.io/2020/04/22/Swoole/"/>
+    <id>https://lemonlyue.github.io/2020/04/22/Swoole/</id>
+    <published>2020-04-22T15:09:36.380Z</published>
+    <updated>2020-04-22T15:10:15.362Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>swoole是面向生产环境的PHP异步网络通信引擎</p><p>使PHP开发人员可以编写高性能的异步并发TCP、UDP、Unix Socket、HTTP，WebSocket 服务。Swoole 可以广泛应用于互联网、移动通信、企业软件、云计算、网络游戏、物联网（IOT）、车联网、智能家居等领域。 使用 PHP + Swoole 作为网络通信框架，可以使企业 IT 研发团队的效率大大提升，更加专注于开发创新产品。 </p></blockquote><h2 id="一、TCP服务器"><a href="#一、TCP服务器" class="headerlink" title="一、TCP服务器"></a>一、TCP服务器</h2><blockquote><p>&lt;?php</p><p>// 创建服务器</p><p>// $serv = new swoole_server($host,$port,$mode,$sock_type);</p><p>/**</p><p>* $host : 127.0.0.1 本地IP</p><p>*             192.168.50.133 监听对应外网IP</p><p>*              0.0.0.0 </p><p>* ipv4 / ipv6 ::0</p><p>* $port : 端口号</p><p>* 1024以下：root</p><p>* 9501</p><p>* $mode：SWOOLE PROCESS 多进程的方式</p><p>* $socket_type:SWOOLE_SOCK_TCP</p><p>*/</p><p>$host = ‘0.0.0.0’;// string$</p><p>$port = 9501;// int</p></blockquote><p>$serv = new swoole_server($host,$port);</p><p>// 使用</p><p>// bool $swoole_server-&gt;on(string $event,$mixed $callback);</p><p>/**</p><p> * $event:</p><p> * connect：当建立连接的时候 $serv:服务器信息,$fd:客户端信息</p><p> * receive：当接收到数据 $serv:服务器信息,$fd:客户端,$from_id:ID,$data:数据</p><p> * close：关闭连接</p><p> */</p><p>$serv-&gt;on(‘connect’,function($serv,$fd){</p><p>​    var_dump($serv);</p><p>​    var_dump($fd);</p><p>​    echo “建立连接\n”;</p><p>});</p><p>$serv-&gt;on(‘receive’,function($serv,$fd,$from_id,$data){</p><p>​    echo “接收到数据\n”;</p><p>​    var_dump($data);</p><p>});</p><p>$serv-&gt;on(‘close’,function($serv,$fd){</p><p>​    echo “连接关闭”;</p><p>});</p><p>$serv-&gt;start();</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;swoole是面向生产环境的PHP异步网络通信引擎&lt;/p&gt;
+&lt;p&gt;使PHP开发人员可以编写高性能的异步并发TCP、UDP、Unix Socket、HTTP，WebSocket 服务。Swoole 可以广泛应用于互联网、移动通信、企业软件、云计算、网
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
+    
+      <category term="Linux" scheme="https://lemonlyue.github.io/tags/Linux/"/>
+    
+      <category term="Swoole" scheme="https://lemonlyue.github.io/tags/Swoole/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode - 409 - 最长回文串（Longest Palindrome）</title>
