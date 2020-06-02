@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lemonlyue.github.io/"/>
-  <updated>2020-06-01T09:16:06.634Z</updated>
+  <updated>2020-06-02T07:30:47.755Z</updated>
   <id>https://lemonlyue.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP-注册树模式</title>
+    <link href="https://lemonlyue.github.io/2020/06/02/%E6%B3%A8%E5%86%8C%E6%A0%91%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lemonlyue.github.io/2020/06/02/%E6%B3%A8%E5%86%8C%E6%A0%91%E6%A8%A1%E5%BC%8F/</id>
+    <published>2020-06-02T07:23:39.510Z</published>
+    <updated>2020-06-02T07:30:47.755Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是注册树模式"><a href="#什么是注册树模式" class="headerlink" title="什么是注册树模式"></a>什么是注册树模式</h2><p>将对象注册到全局的树上，任何地方直接去访问。方便去调用这些对象，便于统筹管理安排。</p><h2 id="注册树模式的实现"><a href="#注册树模式的实现" class="headerlink" title="注册树模式的实现"></a>注册树模式的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 注册树模式</span><br><span class="line"> * Class Register</span><br><span class="line"> *&#x2F;</span><br><span class="line">class Register</span><br><span class="line">&#123;</span><br><span class="line">    protected static $objects &#x3D; [];&#x2F;&#x2F; 注册数组</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 注册</span><br><span class="line">     * @param string $alias</span><br><span class="line">     * @param object $object</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static function set(string $alias, $object)</span><br><span class="line">    &#123;</span><br><span class="line">        self::$objects[$alias] &#x3D; $object;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 撤销注册</span><br><span class="line">     * @param string $alias</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static function _unset(string $alias)</span><br><span class="line">    &#123;</span><br><span class="line">        unset(self::$objects[$alias]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取</span><br><span class="line">     * @param $alias</span><br><span class="line">     * @return mixed</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static function  get($alias)</span><br><span class="line">    &#123;</span><br><span class="line">        return self::$objects[$alias];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Db</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line">$db &#x3D; new Db();</span><br><span class="line">Register::set(&#39;db&#39;, $db);</span><br><span class="line">$result &#x3D; Register::get(&#39;db&#39;);</span><br><span class="line">var_dump($result);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;什么是注册树模式&quot;&gt;&lt;a href=&quot;#什么是注册树模式&quot; class=&quot;headerlink&quot; title=&quot;什么是注册树模式&quot;&gt;&lt;/a&gt;什么是注册树模式&lt;/h2&gt;&lt;p&gt;将对象注册到全局的树上，任何地方直接去访问。方便去调用这些对象，便于统筹管理安排。&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="PHP" scheme="https://lemonlyue.github.io/tags/PHP/"/>
+    
+      <category term="设计模式" scheme="https://lemonlyue.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP-单例模式</title>
