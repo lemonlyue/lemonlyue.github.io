@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="PHP,设计模式," />
 
 
 
@@ -90,16 +90,18 @@
 
 
 
-<meta name="description" content="Hello World这是第一篇博客!">
+<meta name="description" content="什么是观察者模式当一个对象状态发送改变时，依赖它的对象全部会受到通知，并自动更新。观察者模式实现了低耦合的通知机制。可用于通知或更新操作，进行解耦，避免在原来代码上修改逻辑代码。 观察者模式场景一个事件发生后，要执行一连串更新操作。传统的方式就是在事件的代码后加入处理逻辑，当更新的逻辑增多之后，代码会变得难以维护。这种方式是耦合的，增加新的逻辑或删除旧的逻辑需要修改事件的主体代码。 观察者模式的实">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://lemonlyue.github.io/2020/04/22/HelloWorld/index.html">
+<meta property="og:title" content="PHP-观察者模式">
+<meta property="og:url" content="https://lemonlyue.github.io/2020/06/11/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="lemon_lyue">
-<meta property="og:description" content="Hello World这是第一篇博客!">
+<meta property="og:description" content="什么是观察者模式当一个对象状态发送改变时，依赖它的对象全部会受到通知，并自动更新。观察者模式实现了低耦合的通知机制。可用于通知或更新操作，进行解耦，避免在原来代码上修改逻辑代码。 观察者模式场景一个事件发生后，要执行一连串更新操作。传统的方式就是在事件的代码后加入处理逻辑，当更新的逻辑增多之后，代码会变得难以维护。这种方式是耦合的，增加新的逻辑或删除旧的逻辑需要修改事件的主体代码。 观察者模式的实">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-22T10:19:31.125Z">
-<meta property="article:modified_time" content="2020-04-22T15:02:49.726Z">
+<meta property="article:published_time" content="2020-06-11T08:55:10.488Z">
+<meta property="article:modified_time" content="2020-06-11T09:13:57.299Z">
 <meta property="article:author" content="lemon_lyue">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
 
 
@@ -130,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="https://lemonlyue.github.io/2020/04/22/HelloWorld/"/>
+  <link rel="canonical" href="https://lemonlyue.github.io/2020/06/11/观察者模式/"/>
 
 
 
 
 
-  <title>Hello World | lemon_lyue</title>
+  <title>PHP-观察者模式 | lemon_lyue</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lemonlyue.github.io/2020/04/22/HelloWorld/">
+    <link itemprop="mainEntityOfPage" href="https://lemonlyue.github.io/2020/06/11/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lemon_lyue">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">PHP-观察者模式</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-22T18:19:31+08:00">
-                2020-04-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-11T16:55:10+08:00">
+                2020-06-11
               </time>
             
 
@@ -315,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">日常</span>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
                   </a>
                 </span>
 
@@ -346,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  9
+                  487
                 </span>
               
 
@@ -362,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -383,8 +385,11 @@
       
 
       
-        <p>Hello World<br>这是第一篇博客!</p>
-
+        <h2 id="什么是观察者模式"><a href="#什么是观察者模式" class="headerlink" title="什么是观察者模式"></a>什么是观察者模式</h2><p>当一个对象状态发送改变时，依赖它的对象全部会受到通知，并自动更新。观察者模式实现了低耦合的通知机制。<br>可用于通知或更新操作，进行解耦，避免在原来代码上修改逻辑代码。</p>
+<h2 id="观察者模式场景"><a href="#观察者模式场景" class="headerlink" title="观察者模式场景"></a>观察者模式场景</h2><p>一个事件发生后，要执行一连串更新操作。传统的方式就是在事件的代码后加入处理逻辑，当更新的逻辑增多之后，代码会变得难以维护。这种方式是耦合的，增加新的逻辑或删除旧的逻辑需要修改事件的主体代码。</p>
+<h2 id="观察者模式的实现"><a href="#观察者模式的实现" class="headerlink" title="观察者模式的实现"></a>观察者模式的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 事件生成器</span><br><span class="line"> * Class EventGenerator</span><br><span class="line"> *&#x2F;</span><br><span class="line">abstract class EventGenerator</span><br><span class="line">&#123;</span><br><span class="line">    private $observes &#x3D; [];&#x2F;&#x2F; 观察者数组</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 添加观察者</span><br><span class="line">     * @param Observe $observe</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function addObserve(Observe $observe)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;observes[] &#x3D; $observe;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 通知</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function notify()</span><br><span class="line">    &#123;</span><br><span class="line">        foreach ($this-&gt;observes as $observe) &#123;</span><br><span class="line">            $observe-&gt;update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 观察者接口</span><br><span class="line"> * Interface Observe</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface Observe</span><br><span class="line">&#123;</span><br><span class="line">    public function update();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 事件</span><br><span class="line"> * Class User</span><br><span class="line"> *&#x2F;</span><br><span class="line">class User extends EventGenerator</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 发送通知</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function send()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &#39;给用户发送通知...&#39;;</span><br><span class="line">        $this-&gt;notify();</span><br><span class="line">        echo &#39;发送成功！&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 邮件观察者</span><br><span class="line"> * Class EmailObserve</span><br><span class="line"> *&#x2F;</span><br><span class="line">class EmailObserve implements Observe</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function update()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; TODO: Implement update() method.</span><br><span class="line">        echo &#39;发送邮件...&#39;;</span><br><span class="line">        &#x2F;&#x2F; 邮件发送逻辑...</span><br><span class="line">        echo &#39;邮件发送成功...&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 短信观察者</span><br><span class="line"> * Class SMSObserve</span><br><span class="line"> *&#x2F;</span><br><span class="line">class SMSObserve implements Observe</span><br><span class="line">&#123;</span><br><span class="line">    public function update()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; TODO: Implement update() method.</span><br><span class="line">        echo &#39;发送短信...&#39;;</span><br><span class="line">        &#x2F;&#x2F; 短信发送逻辑...</span><br><span class="line">        echo &#39;短信发送成功...&#39;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$user &#x3D; new User();</span><br><span class="line">&#x2F;&#x2F; 添加观察者</span><br><span class="line">$user-&gt;addObserve(new EmailObserve());</span><br><span class="line">$user-&gt;addObserve(new SMSObserve());</span><br><span class="line">&#x2F;&#x2F; 发送</span><br><span class="line">$user-&gt;send();</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\php_project\设计模式\Lemon_lyue&gt;php Observe.php</span><br><span class="line">给用户发送通知...发送邮件...邮件发送成功...发送短信...短信发送成功...发送成功！</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -405,6 +410,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
 
       
       
@@ -414,15 +427,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/06/11/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" rel="next" title="PHP-适配器模式">
+                <i class="fa fa-chevron-left"></i> PHP-适配器模式
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/22/php7%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/" rel="prev" title="php7源码安装">
-                php7源码安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -479,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -563,6 +585,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是观察者模式"><span class="nav-number">1.</span> <span class="nav-text">什么是观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式场景"><span class="nav-number">2.</span> <span class="nav-text">观察者模式场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式的实现"><span class="nav-number">3.</span> <span class="nav-text">观察者模式的实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
