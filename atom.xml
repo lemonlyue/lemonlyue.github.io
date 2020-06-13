@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lemonlyue.github.io/"/>
-  <updated>2020-06-11T09:13:57.299Z</updated>
+  <updated>2020-06-13T04:17:48.389Z</updated>
   <id>https://lemonlyue.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>告别虚拟机，Windows10下开启Linux子系统</title>
+    <link href="https://lemonlyue.github.io/2020/06/13/Windows%E4%B8%8B%E5%BC%80%E5%90%AFLinux%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://lemonlyue.github.io/2020/06/13/Windows%E4%B8%8B%E5%BC%80%E5%90%AFLinux%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
+    <published>2020-06-13T03:30:29.405Z</published>
+    <updated>2020-06-13T04:17:48.389Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h2><img src="/images/系统要求.png"><h2 id="开启子系统"><a href="#开启子系统" class="headerlink" title="开启子系统"></a>开启子系统</h2><ol><li><p>查看系统版本号<br>按win + R，输入winver命令，出现系统版本号信息，我的系统版本号为18363.900</p><img src="/images/版本号.png">如果版本过低，可以先升级Windows版本符合要求后再开启子系统。</li><li><p>系统设置<br>开启-设置-更新和安全-开发者选项-开发人员模式</p><img src="/images/开启开发者模式.png"></li><li><p>启动适用于Linux的Windows子系统<br>返回设置页面，选择 应用-程序和功能-启用或关闭Windows功能-选择适用于Linux的Windows子系统</p><img src="/images/开启子系统.png"></li><li><p>下载Linux系统并安装<br>开始-Microsoft Store-搜索Linux-选择Ubuntu-安装下载(下载速度有点慢)</p><img src="/images/搜索Linux.png"><img src="/images/Linux.png"><img src="/images/安装Linux.png">希望官方可以早点发行个CentOS或者红帽子也行(哭、跪求</li><li><p>打开、设置Ubuntu<br>设置Linux用户名和密码、设置root用户密码、切换root用户升级apt</p><img src="/images/设置账号密码.png"><img src="/images/设置root账号密码.png"><img src="/images/切换root、更新.png"></li></ol><p>Ubuntu系统到这里就已经安装完成了！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;系统要求&quot;&gt;&lt;a href=&quot;#系统要求&quot; class=&quot;headerlink&quot; title=&quot;系统要求&quot;&gt;&lt;/a&gt;系统要求&lt;/h2&gt;&lt;img src=&quot;/images/系统要求.png&quot;&gt;
+
+&lt;h2 id=&quot;开启子系统&quot;&gt;&lt;a href=&quot;#开启子系统&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Linux" scheme="https://lemonlyue.github.io/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>PHP-观察者模式</title>
@@ -251,9 +279,9 @@
       <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
-    
       <category term="Linux" scheme="https://lemonlyue.github.io/tags/Linux/"/>
+    
+      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
     
       <category term="Swoole" scheme="https://lemonlyue.github.io/tags/Swoole/"/>
     
@@ -346,9 +374,9 @@
       <category term="技术" scheme="https://lemonlyue.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
-    
       <category term="Linux" scheme="https://lemonlyue.github.io/tags/Linux/"/>
+    
+      <category term="php" scheme="https://lemonlyue.github.io/tags/php/"/>
     
   </entry>
   
