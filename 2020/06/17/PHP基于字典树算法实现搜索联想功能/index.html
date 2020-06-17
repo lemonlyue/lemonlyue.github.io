@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="PHP,转载," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="lemon_lyue" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="文章来源：https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011897301&#x2F;article&#x2F;details&#x2F;102861207  搜索联想功能是各大搜索引擎具备的基础功能，如下图所示，这个功能简化了用户的输入行为，并且能够给用户推荐热门的搜索词，下面我们来讲一下如何用php实现搜索联想的功能。   实现原理搜索联想功能拆解一下由两部分组成  给定一个查询词，找出以他为前缀的其他目标查询词 对目标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP基于字典树算法实现搜索联想功能">
+<meta property="og:url" content="https://lemonlyue.github.io/2020/06/17/PHP%E5%9F%BA%E4%BA%8E%E5%AD%97%E5%85%B8%E6%A0%91%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E8%81%94%E6%83%B3%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="lemon_lyue">
+<meta property="og:description" content="文章来源：https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011897301&#x2F;article&#x2F;details&#x2F;102861207  搜索联想功能是各大搜索引擎具备的基础功能，如下图所示，这个功能简化了用户的输入行为，并且能够给用户推荐热门的搜索词，下面我们来讲一下如何用php实现搜索联想的功能。   实现原理搜索联想功能拆解一下由两部分组成  给定一个查询词，找出以他为前缀的其他目标查询词 对目标">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lemonlyue.github.io/images/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2.png">
+<meta property="og:image" content="https://lemonlyue.github.io/images/%E5%AD%97%E5%85%B8%E6%A0%91.png">
+<meta property="article:published_time" content="2020-06-17T05:27:24.479Z">
+<meta property="article:modified_time" content="2020-06-17T05:46:01.048Z">
+<meta property="article:author" content="lemon_lyue">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="转载">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemonlyue.github.io/images/%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '3Z4OSLLX8Y',
+      apiKey: '46ff05294d3b5fa0001bf76b800317a4',
+      indexName: 'lemon_lyue_blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lemonlyue.github.io/2020/06/17/PHP基于字典树算法实现搜索联想功能/"/>
+
+
+
+
+
+  <title>PHP基于字典树算法实现搜索联想功能 | lemon_lyue</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">lemon_lyue</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">你知道的越多，你不知道的越多</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lemonlyue.github.io/2020/06/17/PHP%E5%9F%BA%E4%BA%8E%E5%AD%97%E5%85%B8%E6%A0%91%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E6%90%9C%E7%B4%A2%E8%81%94%E6%83%B3%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lemon_lyue">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="lemon_lyue">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PHP基于字典树算法实现搜索联想功能</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-17T13:27:24+08:00">
+                2020-06-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>文章来源：<a href="https://blog.csdn.net/u011897301/article/details/102861207" target="_blank" rel="noopener">https://blog.csdn.net/u011897301/article/details/102861207</a></p>
+</blockquote>
+<p>搜索联想功能是各大搜索引擎具备的基础功能，如下图所示，这个功能简化了用户的输入行为，并且能够给用户推荐热门的搜索词，下面我们来讲一下如何用php实现搜索联想的功能。</p>
+<img src="/images/百度搜索.png">
+
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>搜索联想功能拆解一下由两部分组成</p>
+<ol>
+<li>给定一个查询词，找出以他为前缀的其他目标查询词</li>
+<li>对目标查询词进行排序，选出权重高的若干个查询词</li>
+</ol>
+<p>本篇中重点讲解一下第一部分的实现，这里使用Trie树，也叫字典树，这个数据结构来解决这个问题。通过Trie树可以很方便快速的找到已该字符串为前缀的目标字符串。</p>
+<h2 id="什么是Trie树"><a href="#什么是Trie树" class="headerlink" title="什么是Trie树"></a>什么是Trie树</h2><p>Trie树，即字典树，又称单词查找树或键树，是一种树形结构，是一种哈希树的变种。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。它的优点是：最大限度地减少无谓的字符串比较，查询效率往往比哈希表高。</p>
+<p>Trie的核心思想是空间换时间。利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</p>
+<p>它有3个基本性质：</p>
+<ol>
+<li>根节点不包含字符，除根节点外每一个节点都只包含一个字符。</li>
+<li>从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
+<li>每个节点的所有子节点包含的字符都不相同。</li>
+</ol>
+<p>假如我们有如下字符串<br>hello，hi，today，touch，weak<br>那么构造出来的Trie树如下图所示</p>
+<img src="/images/字典树.png">
+
+<p>当查询的时候只需要从根开始按字符沿着树进行深度遍历，就可以把已该词为前缀的其他查询词查找出来。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>用于实现搜索联想功能的核心方法有两个：</p>
+<ol>
+<li>将查询词的数据集构建成Trie树</li>
+<li>查找以某个查询词为前缀的所有查询词</li>
+</ol>
+<h3 id="第一步：构建Trie树"><a href="#第一步：构建Trie树" class="headerlink" title="第一步：构建Trie树"></a>第一步：构建Trie树</h3><p>注意由于一个字符串有中文有英文，所以对每个字符串使用以下代码进行了分割，将字符串转化成了一个字符的数组<br><code>$charArray = preg_split(&#39;/(?&lt;!^)(?!$)/u&#39;, $str);</code><br>然后对每个字符串执行addWordToTrieTree方法，这个方法将一个词加入到Trie树中，这里用到了递归的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 将字符串的数组构建成Trie树</span><br><span class="line"> *</span><br><span class="line"> * @param [array] $strList</span><br><span class="line"> * @return array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function buildTrieTree($strList)</span><br><span class="line">&#123;</span><br><span class="line">    $tree &#x3D; [];</span><br><span class="line">    foreach ($strList as $str) &#123;</span><br><span class="line">        $charArray &#x3D; preg_split(&#39;&#x2F;(?&lt;!^)(?!$)&#x2F;u&#39;, $str);</span><br><span class="line">        $tree &#x3D; $this-&gt;addWordToTrieTree($charArray, $tree);</span><br><span class="line">    &#125;</span><br><span class="line">    return $tree;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 把一个词加入到Trie树中</span><br><span class="line"> *</span><br><span class="line"> * @param [type] $charArray</span><br><span class="line"> * @param [type] $tree</span><br><span class="line"> * @return array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function addWordToTrieTree($charArray, $tree)</span><br><span class="line">&#123;</span><br><span class="line">    if (count($charArray) &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">        return [];</span><br><span class="line">    &#125;</span><br><span class="line">    $char &#x3D; $charArray[0];</span><br><span class="line"></span><br><span class="line">    $leftStr &#x3D; array_slice($charArray, 1);</span><br><span class="line">    $tree[$char] &#x3D; $this-&gt;addWordToTrieTree($leftStr, $tree[$char]);</span><br><span class="line">    return $tree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询前缀词"><a href="#查询前缀词" class="headerlink" title="查询前缀词"></a>查询前缀词</h3><p>查询前缀词即给定一个字符串，查询树中所有以该串为前缀的字符串，也就是联想的过程。<br>首先调用findSubTree方法，从Trie中找到该前缀所在的子树，然后调用traverseTree方法，遍历这颗子树，把所有的字符串都提取出来，这里也是用了递归的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * @param $prefix</span><br><span class="line"> * @return array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function queryPrefix($prefix)</span><br><span class="line">&#123;</span><br><span class="line">    $charArray &#x3D; preg_split(&#39;&#x2F;(?&lt;!^)(?!$)&#x2F;u&#39;, $prefix);</span><br><span class="line">    $subTree &#x3D; $this-&gt;findSubTree($charArray, $this-&gt;tree);</span><br><span class="line"></span><br><span class="line">    $words &#x3D; $this-&gt;traverseTree($subTree);</span><br><span class="line"></span><br><span class="line">    foreach ($words as &amp;$word) &#123;</span><br><span class="line">        $word &#x3D; $prefix . $word;</span><br><span class="line">    &#125;</span><br><span class="line">    return $words;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 查找子树</span><br><span class="line"> * @param $charArray</span><br><span class="line"> * @param $tree</span><br><span class="line"> * @return array|mixed</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function findSubTree($charArray, $tree)</span><br><span class="line">&#123;</span><br><span class="line">    foreach ($charArray as $char) &#123;</span><br><span class="line">        if (array_key_exists($char, $tree)) &#123;</span><br><span class="line">            $tree &#x3D; $tree[$char];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            return [];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $tree;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 遍历树</span><br><span class="line"> * @param $tree</span><br><span class="line"> * @return array</span><br><span class="line"> *&#x2F;</span><br><span class="line">public function traverseTree($tree)</span><br><span class="line">&#123;</span><br><span class="line">    $words &#x3D; [];</span><br><span class="line">    foreach ($tree as $node &#x3D;&gt; $subTree) &#123;</span><br><span class="line">        if (empty($subTree)) &#123;</span><br><span class="line">            $words[] &#x3D; $node;</span><br><span class="line">            return $words;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $chars &#x3D; $this-&gt;traverseTree($subTree);</span><br><span class="line">        foreach ($chars as $char) &#123;</span><br><span class="line">            $words[] &#x3D; $node . $char;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return $words;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码与测试结果"><a href="#代码与测试结果" class="headerlink" title="代码与测试结果"></a>代码与测试结果</h2><p>完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Class TrieTree</span><br><span class="line"> *&#x2F;</span><br><span class="line">class TrieTree</span><br><span class="line">&#123;</span><br><span class="line">    private $tree;</span><br><span class="line"></span><br><span class="line">    public function __construct($strList)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;tree &#x3D; $this-&gt;buildTrieTree($strList);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @param $prefix</span><br><span class="line">     * @return array</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function queryPrefix($prefix)</span><br><span class="line">    &#123;</span><br><span class="line">        $charArray &#x3D; preg_split(&#39;&#x2F;(?&lt;!^)(?!$)&#x2F;u&#39;, $prefix);</span><br><span class="line">        $subTree &#x3D; $this-&gt;findSubTree($charArray, $this-&gt;tree);</span><br><span class="line"></span><br><span class="line">        $words &#x3D; $this-&gt;traverseTree($subTree);</span><br><span class="line"></span><br><span class="line">        foreach ($words as &amp;$word) &#123;</span><br><span class="line">            $word &#x3D; $prefix . $word;</span><br><span class="line">        &#125;</span><br><span class="line">        return $words;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查找子树</span><br><span class="line">     * @param $charArray</span><br><span class="line">     * @param $tree</span><br><span class="line">     * @return array|mixed</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function findSubTree($charArray, $tree)</span><br><span class="line">    &#123;</span><br><span class="line">        foreach ($charArray as $char) &#123;</span><br><span class="line">            if (array_key_exists($char, $tree)) &#123;</span><br><span class="line">                $tree &#x3D; $tree[$char];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return [];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $tree;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 遍历树</span><br><span class="line">     * @param $tree</span><br><span class="line">     * @return array</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function traverseTree($tree)</span><br><span class="line">    &#123;</span><br><span class="line">        $words &#x3D; [];</span><br><span class="line">        foreach ($tree as $node &#x3D;&gt; $subTree) &#123;</span><br><span class="line">            if (empty($subTree)) &#123;</span><br><span class="line">                $words[] &#x3D; $node;</span><br><span class="line">                return $words;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            $chars &#x3D; $this-&gt;traverseTree($subTree);</span><br><span class="line">            foreach ($chars as $char) &#123;</span><br><span class="line">                $words[] &#x3D; $node . $char;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return $words;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 将字符串的数组构建成Trie树</span><br><span class="line">     *</span><br><span class="line">     * @param [array] $strList</span><br><span class="line">     * @return array</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function buildTrieTree($strList)</span><br><span class="line">    &#123;</span><br><span class="line">        $tree &#x3D; [];</span><br><span class="line">        foreach ($strList as $str) &#123;</span><br><span class="line">            $charArray &#x3D; preg_split(&#39;&#x2F;(?&lt;!^)(?!$)&#x2F;u&#39;, $str);</span><br><span class="line">            $tree &#x3D; $this-&gt;addWordToTrieTree($charArray, $tree);</span><br><span class="line">        &#125;</span><br><span class="line">        return $tree;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 把一个词加入到Trie树中</span><br><span class="line">     *</span><br><span class="line">     * @param [type] $charArray</span><br><span class="line">     * @param [type] $tree</span><br><span class="line">     * @return array</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function addWordToTrieTree($charArray, $tree)</span><br><span class="line">    &#123;</span><br><span class="line">        if (count($charArray) &#x3D;&#x3D;&#x3D; 0) &#123;</span><br><span class="line">            return [];</span><br><span class="line">        &#125;</span><br><span class="line">        $char &#x3D; $charArray[0];</span><br><span class="line"></span><br><span class="line">        $leftStr &#x3D; array_slice($charArray, 1);</span><br><span class="line">        $tree[$char] &#x3D; $this-&gt;addWordToTrieTree($leftStr, $tree[$char]);</span><br><span class="line">        return $tree;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @return array</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function getTree()</span><br><span class="line">    &#123;</span><br><span class="line">        return $this-&gt;tree;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$strList &#x3D; [&#39;春风十里&#39;, &#39;春天在哪里&#39;, &#39;一百万个可能&#39;, &#39;一千年以后&#39;, &#39;后来&#39;, &#39;后来的我们&#39;, &#39;春天里&#39;, &#39;后会无期&#39;];</span><br><span class="line">$trieTree &#x3D; new TrieTree($strList);</span><br><span class="line">print_r($trieTree-&gt;getTree());</span><br><span class="line"></span><br><span class="line">$prefix &#x3D; &#39;春天&#39;;</span><br><span class="line">$queryRes &#x3D; $trieTree-&gt;queryPrefix($prefix);</span><br><span class="line">print_r($queryRes);</span><br></pre></td></tr></table></figure>
+
+<p>将’春风十里’,‘春天在哪里’,‘一百万个可能’,‘一千年以后’,‘后来’,‘后来的我们’,‘春天里’,’后会无期’这些歌名作为数据集，构建一个Trie树并进行测试。<br>可以看到输出以下结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">Trie树：</span><br><span class="line">Array</span><br><span class="line">(</span><br><span class="line">    [春] &#x3D;&gt; Array</span><br><span class="line">        (</span><br><span class="line">            [风] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [十] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [里] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            [天] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [在] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [哪] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                    [里] &#x3D;&gt; Array</span><br><span class="line">                                        (</span><br><span class="line">                                        )</span><br><span class="line"></span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                    [里] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    [一] &#x3D;&gt; Array</span><br><span class="line">        (</span><br><span class="line">            [百] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [万] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [个] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                    [可] &#x3D;&gt; Array</span><br><span class="line">                                        (</span><br><span class="line">                                            [能] &#x3D;&gt; Array</span><br><span class="line">                                                (</span><br><span class="line">                                                )</span><br><span class="line"></span><br><span class="line">                                        )</span><br><span class="line"></span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            [千] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [年] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [以] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                    [后] &#x3D;&gt; Array</span><br><span class="line">                                        (</span><br><span class="line">                                        )</span><br><span class="line"></span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    [后] &#x3D;&gt; Array</span><br><span class="line">        (</span><br><span class="line">            [来] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [的] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [我] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                    [们] &#x3D;&gt; Array</span><br><span class="line">                                        (</span><br><span class="line">                                        )</span><br><span class="line"></span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            [会] &#x3D;&gt; Array</span><br><span class="line">                (</span><br><span class="line">                    [无] &#x3D;&gt; Array</span><br><span class="line">                        (</span><br><span class="line">                            [期] &#x3D;&gt; Array</span><br><span class="line">                                (</span><br><span class="line">                                )</span><br><span class="line"></span><br><span class="line">                        )</span><br><span class="line"></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line">查询以“春为前缀的字符串”</span><br><span class="line">Array</span><br><span class="line">(</span><br><span class="line">    [0] &#x3D;&gt; 春风十里</span><br><span class="line">    [1] &#x3D;&gt; 春天在哪里</span><br><span class="line">    [2] &#x3D;&gt; 春天里</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        
+      
+    </div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag"># PHP</a>
+          
+            <a href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/13/Windows%E4%B8%8B%E5%BC%80%E5%90%AFLinux%E5%AD%90%E7%B3%BB%E7%BB%9F/" rel="next" title="告别虚拟机，Windows10下开启Linux子系统">
+                <i class="fa fa-chevron-left"></i> 告别虚拟机，Windows10下开启Linux子系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80OTgwNi8yNjI5Nw=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lemon_lyue</p>
+              <p class="site-description motion-element" itemprop="description">lemon_lyue个人站，分享技术和日常</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lemonlyue" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lemon_lyue@163.com" target="_blank" title="Email">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Email</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Trie树"><span class="nav-number">2.</span> <span class="nav-text">什么是Trie树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：构建Trie树"><span class="nav-number">3.1.</span> <span class="nav-text">第一步：构建Trie树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询前缀词"><span class="nav-number">3.2.</span> <span class="nav-text">查询前缀词</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码与测试结果"><span class="nav-number">4.</span> <span class="nav-text">代码与测试结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lemon_lyue</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
