@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="PHP,设计模式," />
+  <meta name="keywords" content="LeetCode,算法," />
 
 
 
@@ -90,19 +90,21 @@
 
 
 
-<meta name="description" content="什么是工厂模式组装一台电脑，需要不同的零件，而工厂模式就像零件制造商一样，不同的零件不同的工厂负责或者管理着不同的零件工厂，将代码进行解耦，不需要在逻辑代码中new不同的类，进行一个统一的管理。 工厂模式的实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152">
+<meta name="description" content="题目 难度：简单 题目链接：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;destination-city&#x2F; 语言： PHP 题目内容： 给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] &#x3D; [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP-工厂模式">
-<meta property="og:url" content="https://lemonlyue.github.io/2020/06/01/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="LeetCode - 1349 - 旅行终点站">
+<meta property="og:url" content="https://lemonlyue.github.io/2020/07/06/LeetCode%20-%201349%20-%20%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/index.html">
 <meta property="og:site_name" content="lemon_lyue">
-<meta property="og:description" content="什么是工厂模式组装一台电脑，需要不同的零件，而工厂模式就像零件制造商一样，不同的零件不同的工厂负责或者管理着不同的零件工厂，将代码进行解耦，不需要在逻辑代码中new不同的类，进行一个统一的管理。 工厂模式的实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152">
+<meta property="og:description" content="题目 难度：简单 题目链接：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;destination-city&#x2F; 语言： PHP 题目内容： 给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] &#x3D; [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-01T08:36:49.317Z">
-<meta property="article:modified_time" content="2020-06-01T08:50:01.641Z">
+<meta property="og:image" content="https://lemonlyue.github.io/images/1436.png">
+<meta property="article:published_time" content="2020-07-06T12:02:35.379Z">
+<meta property="article:modified_time" content="2020-07-06T12:17:51.342Z">
 <meta property="article:author" content="lemon_lyue">
-<meta property="article:tag" content="PHP">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemonlyue.github.io/images/1436.png">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://lemonlyue.github.io/2020/06/01/工厂模式/"/>
+  <link rel="canonical" href="https://lemonlyue.github.io/2020/07/06/LeetCode - 1349 - 旅行终点站/"/>
 
 
 
 
 
-  <title>PHP-工厂模式 | lemon_lyue</title>
+  <title>LeetCode - 1349 - 旅行终点站 | lemon_lyue</title>
   
 
 
@@ -265,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lemonlyue.github.io/2020/06/01/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://lemonlyue.github.io/2020/07/06/LeetCode%20-%201349%20-%20%E6%97%85%E8%A1%8C%E7%BB%88%E7%82%B9%E7%AB%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lemon_lyue">
@@ -282,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PHP-工厂模式</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode - 1349 - 旅行终点站</h1>
         
 
         <div class="post-meta">
@@ -294,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-01T16:36:49+08:00">
-                2020-06-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-06T20:02:35+08:00">
+                2020-07-06
               </time>
             
 
@@ -348,7 +350,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  274
+                  450
                 </span>
               
 
@@ -385,8 +387,23 @@
       
 
       
-        <h2 id="什么是工厂模式"><a href="#什么是工厂模式" class="headerlink" title="什么是工厂模式"></a>什么是工厂模式</h2><p>组装一台电脑，需要不同的零件，而工厂模式就像零件制造商一样，不同的零件不同的工厂负责或者管理着不同的零件工厂，将代码进行解耦，不需要在逻辑代码中new不同的类，进行一个统一的管理。</p>
-<h2 id="工厂模式的实现"><a href="#工厂模式的实现" class="headerlink" title="工厂模式的实现"></a>工厂模式的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 一个运算方法的接口</span><br><span class="line"> * Interface Operation</span><br><span class="line"> *&#x2F;</span><br><span class="line">interface Operation</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 两个数的运算</span><br><span class="line">     * @param int $num1</span><br><span class="line">     * @param int $num2</span><br><span class="line">     * @return int</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public function getVal (int $num1, int $num2): int;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 加法</span><br><span class="line"> * Class Add</span><br><span class="line"> *&#x2F;</span><br><span class="line">class Add implements Operation</span><br><span class="line">&#123;</span><br><span class="line">    public function getVal(int $num1, int $num2): int</span><br><span class="line">    &#123;</span><br><span class="line">        return $num1 + $num2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 减法</span><br><span class="line"> * Class Sub</span><br><span class="line"> *&#x2F;</span><br><span class="line">class Sub implements Operation</span><br><span class="line">&#123;</span><br><span class="line">    public function getVal(int $num1, int $num2): int</span><br><span class="line">    &#123;</span><br><span class="line">        return $num1 - $num2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 运算工厂（工厂模式）</span><br><span class="line"> * Class CounterFactory</span><br><span class="line"> *&#x2F;</span><br><span class="line">class CounterFactory</span><br><span class="line">&#123;</span><br><span class="line">    private static $operation;&#x2F;&#x2F; 运算</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建一个运算</span><br><span class="line">     * @param string $operation</span><br><span class="line">     * @return Add|Sub</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static function createOperation (string $operation)</span><br><span class="line">    &#123;</span><br><span class="line">        switch ($operation) &#123;</span><br><span class="line">            case &#39;+&#39;:</span><br><span class="line">                self::$operation &#x3D; new Add();</span><br><span class="line">                break;</span><br><span class="line">            case &#39;-&#39;:</span><br><span class="line">                self::$operation &#x3D; new Sub();</span><br><span class="line">                break;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return self::$operation;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$factory &#x3D; CounterFactory::createOperation(&#39;+&#39;);</span><br><span class="line">$res &#x3D; $factory-&gt;getVal(1, 2);</span><br><span class="line">var_dump($res);</span><br></pre></td></tr></table></figure>
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><ul>
+<li><strong>难度</strong>：<span style="color:green;">简单</span></li>
+<li><strong>题目链接</strong>：<a href="https://leetcode-cn.com/problems/destination-city/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/destination-city/</a></li>
+<li><strong>语言：</strong> PHP</li>
+<li><strong>题目内容</strong>：<blockquote>
+<p>给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] = [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线路的城市。<br>题目数据保证线路图会形成一条不存在循环的线路，因此只会有一个旅行终点站。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>示例 1</strong>：<br><strong>输入：</strong>paths = [[“London”,”New York”],[“New York”,”Lima”],[“Lima”,”Sao Paulo”]]<br><strong>输出：</strong>“Sao Paulo”<br><strong>解释：</strong><br>从 “London” 出发，最后抵达终点站 “Sao Paulo” 。本次旅行的路线是 “London” -&gt; “New York” -&gt; “Lima” -&gt; “Sao Paulo” 。</p>
+<p><strong>示例 2</strong>：<br><strong>输入：</strong>paths = [[“B”,”C”],[“D”,”B”],[“C”,”A”]]<br><strong>输出：</strong>“A”<br><strong>解释：</strong><br>所有可能的线路是：<br>“D” -&gt; “B” -&gt; “C” -&gt; “A”.<br>“B” -&gt; “C” -&gt; “A”.<br>“C” -&gt; “A”.<br>“A”.<br>显然，旅行终点站是 “A” 。</p>
+<p><strong>示例 3</strong>：<br><strong>输入：</strong>paths = [[“A”,”Z”]]<br><strong>输出：</strong>“Z”</p>
+<h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><p><strong>LeetCode给定函数体</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @param String[][] $paths</span><br><span class="line">     * @return String</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function destCity($paths) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>终点就是不会作为起点，所以拆成两个数组（起点数组和终点数组），遍历终点数组，如果终点数组中某个元素不在起点数组内，则该地点就是最终的终点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @param String[][] $paths</span><br><span class="line">     * @return String</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function destCity($paths) &#123;</span><br><span class="line">        $start &#x3D; [];</span><br><span class="line">        $end &#x3D; [];</span><br><span class="line">        &#x2F;&#x2F; 拆分为两个数组,获取起点和终点</span><br><span class="line">        foreach ($paths as $item) &#123;</span><br><span class="line">            $start[] &#x3D; $item[0];</span><br><span class="line">            $end[] &#x3D; $item[1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * @desc PHP内置获取数组某一列</span><br><span class="line">         *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; $start &#x3D; array_column($paths, 0);</span><br><span class="line">        &#x2F;&#x2F; $end &#x3D; array_column($paths, 1);</span><br><span class="line"></span><br><span class="line">        foreach ($end as $item) &#123;</span><br><span class="line">            &#x2F;&#x2F; 判断终点是否存在于起点,存在则不是最终的终点</span><br><span class="line">            if (!in_array($item, $start)) &#123;</span><br><span class="line">                return $item;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><img src="/images/1436.png">
       
     </div>
     
@@ -409,9 +426,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
           
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag"># 设计模式</a>
+            <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
           
         </div>
       
@@ -424,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/13/Laradock%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="Laradock使用过程中遇到的问题">
-                <i class="fa fa-chevron-left"></i> Laradock使用过程中遇到的问题
+              <a href="/2020/07/01/Phpstorm%E5%BF%85%E5%A4%87%E6%8F%92%E4%BB%B6/" rel="next" title="Phpstorm必备插件">
+                <i class="fa fa-chevron-left"></i> Phpstorm必备插件
               </a>
             
           </div>
@@ -433,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/01/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" rel="prev" title="PHP-单例模式">
-                PHP-单例模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -596,7 +609,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是工厂模式"><span class="nav-number">1.</span> <span class="nav-text">什么是工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式的实现"><span class="nav-number">2.</span> <span class="nav-text">工厂模式的实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题"><span class="nav-number">2.</span> <span class="nav-text">解题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">2.2.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></div>
             
 
           </div>
