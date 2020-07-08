@@ -97,15 +97,14 @@
 <meta property="og:site_name" content="lemon_lyue">
 <meta property="og:description" content="题目 难度：简单 题目链接：https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;destination-city&#x2F; 语言： PHP 题目内容： 给你一份旅游线路图，该线路图中的旅行线路用数组 paths 表示，其中 paths[i] &#x3D; [cityAi, cityBi] 表示该线路将会从 cityAi 直接前往 cityBi 。请你找出这次旅行的终点站，即没有任何可以通往其他城市的线">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://lemonlyue.github.io/.io//1436.png">
 <meta property="og:image" content="https://lemonlyue.github.io/images/1436.png">
 <meta property="article:published_time" content="2020-07-06T12:02:35.379Z">
-<meta property="article:modified_time" content="2020-07-08T12:55:51.979Z">
+<meta property="article:modified_time" content="2020-07-08T13:19:21.178Z">
 <meta property="article:author" content="lemon_lyue">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://lemonlyue.github.io/.io//1436.png">
+<meta name="twitter:image" content="https://lemonlyue.github.io/images/1436.png">
 
 
 
@@ -404,8 +403,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @param String[][] $paths</span><br><span class="line">     * @return String</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function destCity($paths) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>终点就是不会作为起点，所以拆成两个数组（起点数组和终点数组），遍历终点数组，如果终点数组中某个元素不在起点数组内，则该地点就是最终的终点</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * @param String[][] $paths</span><br><span class="line">     * @return String</span><br><span class="line">     *&#x2F;</span><br><span class="line">    function destCity($paths) &#123;</span><br><span class="line">        $start &#x3D; [];</span><br><span class="line">        $end &#x3D; [];</span><br><span class="line">        &#x2F;&#x2F; 拆分为两个数组,获取起点和终点</span><br><span class="line">        foreach ($paths as $item) &#123;</span><br><span class="line">            $start[] &#x3D; $item[0];</span><br><span class="line">            $end[] &#x3D; $item[1];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * @desc PHP内置获取数组某一列</span><br><span class="line">         *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; $start &#x3D; array_column($paths, 0);</span><br><span class="line">        &#x2F;&#x2F; $end &#x3D; array_column($paths, 1);</span><br><span class="line"></span><br><span class="line">        foreach ($end as $item) &#123;</span><br><span class="line">            &#x2F;&#x2F; 判断终点是否存在于起点,存在则不是最终的终点</span><br><span class="line">            if (!in_array($item, $start)) &#123;</span><br><span class="line">                return $item;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><p><img src="/.io//1436.png" alt="img"></p>
-<!-- <img src="/images/1436.png"> -->
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><img src="https://lemonlyue.github.io/images/1436.png">
       
     </div>
     
