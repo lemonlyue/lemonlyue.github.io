@@ -1,0 +1,58 @@
+favicon:
+  logo: lemon.png
+  icon16: lemon.png
+  icon32: lemon.png
+
+user:
+  name: lemonlyue
+  first_name: lyue
+  last_name: lemon
+  email: lemon_lyue@163.com
+  avatar: avatar.jpg
+sidebar:
+  social: # 社交地址
+    - name: github
+      icon: fab fa-github
+      url: https://lemonlyue.github.com
+  typedTextPrefix: I`m
+  typedText: ["Web Developer"]
+  info: # 个人信息
+    - key: City
+      val: ShenZhen
+    - key: Birth
+      val: 1998.11
+
+banner:
+  index:
+    type: img
+    bgurl: https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c
+    bannerTitle: The more you know,<br>the more you don't know.
+    bannerText: Welcome to my blog!
+    
+footer:
+  copyrightYear: 2020
+
+rightside:
+  readmode: true
+  aside: true
+
+top_bars:
+  - title: home
+    url: /
+  - title: archives
+    url: /archives/
+    noswup: true
+  - title: about
+    url: /about/
+    noswup: true
+
+baidu_push: true
+
+search:
+  enable: true
+  type: local
+
+wordcount:
+  enable: true
+  count: true
+  time: true
