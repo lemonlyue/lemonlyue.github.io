@@ -7,16 +7,20 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="MySQL的基本架构">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL的基本架构">
 <meta property="og:url" content="https://lemonlyue.github.io/2023/10/03/MySQL%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84/index.html">
 <meta property="og:site_name" content="lemonlyue">
+<meta property="og:description" content="MySQL的基本架构">
 <meta property="og:locale">
+<meta property="og:image" content="https://lemonlyue.github.io/img/404.jpg">
 <meta property="article:published_time" content="2023-10-03T10:18:53.000Z">
-<meta property="article:modified_time" content="2023-10-03T11:03:10.450Z">
+<meta property="article:modified_time" content="2023-10-03T12:01:38.178Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://lemonlyue.github.io/img/404.jpg">
 
 
 <title >MySQL的基本架构</title>
@@ -58,7 +62,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"lemonlyue.github.io","author":"John Doe","root":"/","typed_text":["Web Developer"],"theme_version":"2.1.2","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"lemon.png","icon16":"lemon.png","icon32":"lemon.png","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"creative_commons":{"license":"by-nc-sa","language":"deed.zh"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"trigger":"auto","path":"search.xml"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-03 19:03:10"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-10-03 20:01:38"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.1.2" id="trm-switch-style">
@@ -367,7 +371,8 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    
+    <h1 id="MySQL的基本架构"><a href="#MySQL的基本架构" class="headerlink" title="MySQL的基本架构"></a>MySQL的基本架构</h1><p><img src="/mysql%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.webp" alt="MySQL的基础架构" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+
 </article>
     
     
@@ -485,8 +490,21 @@
 
             
 
+    <div id="post-toc" class="trm-post-toc">
+      <div class="trm-post-toc-header">
+        目录导航
+      </div>
+      <div class="trm-post-toc-content">
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1"><a rel="nofollow" class="trm-toc-link" href="#MySQL的基本架构"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">MySQL的基本架构</span></a></li></ol>
+      </div>
+    </div>
+
             
 <div class="trm-fixed-container">
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <i class="iconfont fas fa-th-list"></i>
+        </div>
     
     
         <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
