@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>MySQL的逻辑架构</title>
+      <link href="/2023/10/03/MySQL%E7%9A%84%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84/"/>
+      <url>/2023/10/03/MySQL%E7%9A%84%E9%80%BB%E8%BE%91%E6%9E%B6%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于MySQL的count用法</title>
+      <link href="/2023/10/03/%E5%85%B3%E4%BA%8EMySQL%E7%9A%84count/"/>
+      <url>/2023/10/03/%E5%85%B3%E4%BA%8EMySQL%E7%9A%84count/</url>
+      
+        <content type="html"><![CDATA[<h1 id="关于-MySQL-的-count-用法"><a href="#关于-MySQL-的-count-用法" class="headerlink" title="关于 MySQL 的 count() 用法"></a>关于 MySQL 的 count() 用法</h1><h2 id="count-函数概述"><a href="#count-函数概述" class="headerlink" title="count()函数概述"></a>count()函数概述</h2><p>count() 是一个聚合函数，返回指定匹配条件的行数。开发中常用来统计表中的数据。</p><h2 id="count-的实现方式"><a href="#count-的实现方式" class="headerlink" title="count(*) 的实现方式"></a>count(*) 的实现方式</h2><ul><li><p>MyISAM 引擎把一个表的总行数存在磁盘上，因此执行 count(*) 会直接返回这个数，效率很高。但是在加上 where 限定语句后 MySQL 需要对全表进行检索从而得出 count 的总数。</p></li><li><p>InnoDB 引擎执行 count(*) 时，需要把数据一行一行地从引擎里面读出来，然后累积计数。</p></li></ul><h3 id="为什么-InnoDB-不可以和-MyISAM-一样，把数字也存起来？"><a href="#为什么-InnoDB-不可以和-MyISAM-一样，把数字也存起来？" class="headerlink" title="为什么 InnoDB 不可以和 MyISAM 一样，把数字也存起来？"></a>为什么 InnoDB 不可以和 MyISAM 一样，把数字也存起来？</h3><ul><li>因为 InnoDB 即使在同一个时刻的多个查询，由于多版本兵法控制（MVCC）的原因，InnoDB 表返回行数也是不确定的。</li></ul><blockquote><p>InnoDB 在执行 count(<em>) 操作的时候做了优化<br>InnoDB 是索引组织表，主键索引树的叶子节点是数据，而普通索引树的叶子节点是主键值，所以普通索引树比主键索引树小很多。对于 count(</em>) 这样的操作，遍历哪个索引树得到的结果逻辑上都是一样的，因此 MySQL 优化器会找到最小的那棵树来遍历。在保证逻辑正确的前提下，尽量减少扫描的数据量，是数据库系统设计的通用法则之一。</p></blockquote><p><code>show table status</code>命令输出结果有<code>TABLE_ROWS</code>用于显示这个表当前有多少行，但不可代替 count(*)，因为索引统计的值是通过采样来估算的（MySQL会索引选择错误导致）。</p><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul><li><p>MyISAM 表虽然 count(*) 很快，但是不支持事务；</p></li><li><p><code>show table status</code>命令虽然返回很快，但是不准确；</p></li><li><p>InnoDB 表直接 count(*) 会遍历全表，虽然结果准确，但会导致性能的问题。</p></li></ul><h2 id="不同的-count-用法"><a href="#不同的-count-用法" class="headerlink" title="不同的 count 用法"></a>不同的 count 用法</h2><h3 id="count-主键id"><a href="#count-主键id" class="headerlink" title="count(主键id)"></a>count(主键id)</h3><p>InnoDB 引擎会遍历整张表，把每一行的 id 值都取出来返回给 server 层。server 层拿到 id 后，判断不可能为空的就按行累加。</p><h3 id="count-1"><a href="#count-1" class="headerlink" title="count(1)"></a>count(1)</h3><p>InnoDB 引擎遍历整张表，但不取值。server 层对于返回的每一行，放一个数字“1”进去，判断是不可能为空的，按行累加。</p><p>count(1) 执行速度比 count(主键id) 快，因为从引擎返回 id 会涉及到解析数据行，以及拷贝字段值的操作。</p><h3 id="count-字段"><a href="#count-字段" class="headerlink" title="count(字段)"></a>count(字段)</h3><ol><li><p>如果字段是 not null 的话，一行行地从记录里面读出这个字段，判断不能为 null，按行累加；</p></li><li><p>如果这个字段允许为 null，那么执行的时候，还要取值判断是否为 null，不为 null 才累加。</p></li></ol><h3 id="count"><a href="#count" class="headerlink" title="count(*)"></a>count(*)</h3><p>count(<em>) 是例外，不会把全部字段取出来，专门做了优化，不取值。count(</em>) 肯定不是 null，按行累加。</p><h2 id="各个-count-用法的执行速度"><a href="#各个-count-用法的执行速度" class="headerlink" title="各个 count 用法的执行速度"></a>各个 count 用法的执行速度</h2><p>count(字段)&lt; count(主键 id) &lt; count(1) ≈ count(*)</p><p>建议使用 count(*)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LeeCode-64.最小路径和</title>
       <link href="/2023/10/02/leecode64/"/>
       <url>/2023/10/02/leecode64/</url>
@@ -41,6 +91,12 @@
       
         <content type="html"><![CDATA[<h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World!"></a>Hello World!</h1><p>This is my first blog post!</p><p><img src="/../cover-1.jpg" alt="img" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>]]></content>
       
+      
+      <categories>
+          
+          <category> 日常 </category>
+          
+      </categories>
       
       
     </entry>
